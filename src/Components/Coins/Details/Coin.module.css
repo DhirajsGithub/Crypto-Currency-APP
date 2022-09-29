@@ -1,0 +1,7 @@
+.coin:hover{
+    cursor: pointer;
+}
+.name{
+    font-weight: bold;
+    margin: 0 0.5rem;
+}
