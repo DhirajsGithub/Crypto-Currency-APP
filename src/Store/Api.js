@@ -38,7 +38,7 @@ export const AuthContextProvider = (props) => {
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`
     );
     if (!response.ok) {
-      throw new Error("response is not ok", response.ok);
+      throw new Error("response is not ok", response);
     }
     const data = await response.json();
     setCryptoData(data);

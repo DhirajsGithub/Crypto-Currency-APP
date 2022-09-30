@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import AuthContext from '../../../Store/Api';
 
-const Price = () => {
+const Price = (props) => {
+
+  let obj2 = new Intl.NumberFormat('en-US');  
+  let output2 = obj2.format(props.price);  
+
   return (
-    <td>price</td>
+    <td>${output2}</td>
   )
 }
 
