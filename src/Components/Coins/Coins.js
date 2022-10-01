@@ -9,12 +9,10 @@ import Loading from "./Loading";
 
 export const Coins = () => {
   const ctx = useContext(AuthContext);
-  console.log(ctx.cryptoData);
-  console.log(ctx.loading);
 
   const [sortedCryptoData, setSortedCryptoData] = useState(ctx.cryptoData);
   const [sorted, setSorted] = useState(true);
-  const [sortHead, setSortHead] = useState("");
+  console.log("reloading");
 
   const sortData = (head) => {
     setSorted(false);
@@ -23,6 +21,7 @@ export const Coins = () => {
       setSorted(true);
       switch (head) {
         case "#":
+          console.log("#");
           if (sorted) {
             setSorted(false);
 
@@ -31,13 +30,14 @@ export const Coins = () => {
           return a.market_cap_rank - b.market_cap_rank;
 
         case "Coin":
+          let x = a.name.toUpperCase(),
+            y = b.name.toUpperCase();
           if (sorted) {
             setSorted(false);
-            
-            return b.name - a.name;
-          }
-          return b.name - a.name;
 
+            return x == y ? 0 : x > y ? 1 : -1;
+          }
+          return x == y ? 0 : x < y ? 1 : -1;
         case "price":
           if (sorted) {
             setSorted(false);
@@ -51,14 +51,10 @@ export const Coins = () => {
             setSorted(false);
 
             return (
-              b.price_change_percentage_24h -
-              a.price_change_percentage_24h
+              b.price_change_percentage_24h - a.price_change_percentage_24h
             );
           }
-          return (
-            a.price_change_percentage_24h -
-            b.price_change_percentage_24h
-          );
+          return a.price_change_percentage_24h - b.price_change_percentage_24h;
 
         case "high_24h":
           if (sorted) {
@@ -97,25 +93,8 @@ export const Coins = () => {
     setSortedCryptoData(highToLow);
   };
 
-  // sorting the array according to numbers
-  // const sortPrice = () => {
-  //   console.log("shit")
-  //   const highToLow = ctx.cryptoData.sort((a, b) => {
-  //     setSorted(true);
-  //     if(sorted){
-  //       setSorted(false);
-  //       return b.current_price - a.current_price;
-  //     }
-  //     return a.current_price - b.current_price;
-
-  //   });
-
-  //   setSortedCryptoData(highToLow);
-  // };
-
   return (
     <Fragment>
-      {/* <button onClick={sortPrice}>btn</button> */}
       {ctx.loading && <Loading />}
       <Table className={classes.coins} striped hover variant="light" responsive>
         <thead>

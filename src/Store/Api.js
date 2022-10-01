@@ -6,6 +6,7 @@ const AuthContext = React.createContext({
   perPage: 100,
   sparkline: false,
   loading: false,
+  reload : false,
   cryptoData: [],
 
   handlePageNo: (pageNo) => {},
@@ -24,10 +25,14 @@ export const AuthContextProvider = (props) => {
   const [cryptoData, setCryptoData] = useState([]);
   const pageNoHandler = (pageNo) => {
     setPageNo(pageNo);
+    fetchCurrencyData();
   };
   const currencyHandler = (currency) => {
     serCurrency(currency);
   };
+  const loadingHandler = ()=>{
+    fetchCurrencyData();
+  }
   // const cryptoDataHandler = ()=>{
 
   // }
@@ -54,7 +59,7 @@ export const AuthContextProvider = (props) => {
   }, [pageNo, currency]);
 
   return (
-    <AuthContext.Provider value={{ handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading,}}>
+    <AuthContext.Provider value={{ handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler}}>
       {props.children}
     </AuthContext.Provider>
   );

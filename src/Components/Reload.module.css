@@ -1,0 +1,22 @@
+.reload{
+    text-align: end;
+    font-size:2rem; 
+    color:#183052
+}
+.reload i{
+    margin: 0 4rem;
+}
+.reload i:hover{
+    cursor: pointer;
+    /* transition-duration: infinite; */
+    transform: rotate(180deg);
+    transition-duration: 0.8s;
+    color: #264c81;
+   
+}
+
+@media screen and (max-width: 900px) {
+    .reload i{
+        margin: 0 1rem!important;
+    }
+}

@@ -1,0 +1,20 @@
+.dropdown{
+    text-align: end;
+}
+.dropdownSec{
+    /* display: flex; */
+    max-width: 100%;
+    /* border: 1px solid red !important; */
+    margin: 0 1rem;
+}
+a.headingLink
+{
+  text-decoration:none;
+  color: blue;
+
+}
+a.headingLink:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    text-shadow: 0.7px 0.8px 1px  rgba(0, 0, 0, 0.223) ;
+}
