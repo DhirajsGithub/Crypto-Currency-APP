@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useRef, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Heading from "./Heading/Heading";
 import Row from "./Row/Row";
@@ -6,12 +6,17 @@ import classes from "./Coins.module.css";
 
 import AuthContext from "../../Store/Api";
 import Loading from "./Loading";
+import PageNo from "../PageNo";
 
 export const Coins = () => {
+  const scrollUpRef = useRef();
   const ctx = useContext(AuthContext);
+  const scrollUp = ()=>{
+    scrollUpRef.current.scrollIntoView({ behavior: "smooth" });
+  }
 
   const [sortedCryptoData, setSortedCryptoData] = useState(ctx.cryptoData);
-  const [sorted, setSorted] = useState(true);
+  const [sorted, setSorted] = useState(null);
   // console.log("reloading");
   console.log(ctx.loading)
 
@@ -96,11 +101,14 @@ export const Coins = () => {
 
   return (
     <Fragment>
+     <div ref={scrollUpRef}></div>
       {ctx.loading && <Loading />}
       <br />
+     
       <Table className={classes.coins} striped hover variant="light" responsive>
-        <thead>
-          <Heading sortData={sortData} />
+        <thead >
+        
+          <Heading sorted={sorted} sortData={sortData} />
         </thead>
         <tbody>
           {sortedCryptoData.length > 0
@@ -112,6 +120,7 @@ export const Coins = () => {
               })}
         </tbody>
       </Table>
+      <PageNo scrollUp={scrollUp} />
     </Fragment>
   );
 };

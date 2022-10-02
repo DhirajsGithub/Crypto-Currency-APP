@@ -4,6 +4,9 @@
     color:#183052;
    
 }
+.reload div{
+    display: inline-block;
+}
 .reload i{
     margin: 0 4rem;
 }
@@ -19,5 +22,10 @@
 @media screen and (max-width: 900px) {
     .reload i{
         margin: 0 1rem!important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .status{
+        text-align: end;
     }
 }

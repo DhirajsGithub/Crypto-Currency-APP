@@ -1,101 +1,54 @@
-import { useContext, useState } from "react";
+import React, {
+  useContext,
+} from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
-import { Link } from "react-router-dom";
 import AuthContext from "../Store/Api";
+import classes from './PageNo.module.css'
 
 function PageNo(props) {
   const ctx = useContext(AuthContext);
-  const pageNoIs = Number(props.PageNo);
-  const handlePagination = () => {
-    console.log(props.pageNo);
-    ctx.handlePageNo(props.pageNo);
-  };
-
-  const [active, setActive] = useState(1);
+  const handleOnSubmit =(event)=>{
+    let pageNo = event.target.jumpToNo.value;
+    event.preventDefault();
+    if(!pageNo){
+      pageNo = 1;
+    }
+    ctx.handlePageNo(pageNo)
+    event.target.jumpToNo.value = "";
+  }
   return (
-    <ButtonToolbar aria-label="Toolbar with button groups">
+    <ButtonToolbar
+      className={`justify-content-center paginationBtn`}
+      aria-label="Toolbar with button groups"
+    >
       <ButtonGroup className="me-2" aria-label="First group">
-        <Link
-          style={{ textDecoration: "none", border: "none" }}
+        <Button
           onClick={() => {
-            active > 1 && setActive(active - 1);
-            handlePagination();
+            props.scrollUp();
+            ctx.pageNo > 1 && ctx.handlePageNo( ctx.pageNo -1)
+            // handlePagination();
           }}
-          to={`/page/${active - 1}`}
         >
-          <Button>Prev</Button>
-        </Link>
+          &#8678; Prev
+        </Button>
       </ButtonGroup>
-      <ButtonGroup className="me-2" aria-label="Second group">
-        <Link
-          style={{ textDecoration: "none" }}
+      <ButtonGroup className="ms-2" aria-label="Third group">
+        <Button
           onClick={() => {
-            handlePagination();
-            active - 10 > 0 && setActive(active - 10);
+            props.scrollUp();
+            ctx.pageNo < 131 && ctx.handlePageNo( ctx.pageNo +1)
+            // handlePagination();
           }}
-          to={`/page/${active}`}
         >
-          <Button active>{active}</Button>
-        </Link>
-        <Link
-          style={{ textDecoration: "none" }}
-          onClick={() => {
-            handlePagination();
-            active - 20 > 0 && setActive(active - 20);
-          }}
-          to={`/page/${active + 1}`}
-        >
-          <Button>{active + 1}</Button>
-        </Link>
-        <Link>
-          <Button>...</Button>
-        </Link>
-
-        <Link
-          onClick={() => {
-            active < 121 && setActive(active + 10);
-            handlePagination();
-          }}
-          to={`/page/${active + 10}`}
-        >
-          <Button>{active + 10}</Button>
-        </Link>
-        <Link
-          onClick={() => {
-            active < 111 && setActive(active + 20);
-            handlePagination();
-          }}
-          to={`/page/${active + 20}`}
-        >
-          <Button>{active + 20}</Button>
-        </Link>
-        <Link>
-          <Button>...</Button>
-        </Link>
-
-        <Link
-          onClick={() => {
-            //  active <111 && setActive(active+20)
-            handlePagination();
-          }}
-          to="/page/132"
-        >
-          <Button>132</Button>
-        </Link>
+          Next &#8680;
+        </Button>
       </ButtonGroup>
-      <ButtonGroup aria-label="Third group">
-        <Link
-          onClick={() => {
-            active < 110 && setActive(active + 1);
-            handlePagination();
-          }}
-          to={`/page/${active}`}
-        >
-          <Button>Next</Button>
-        </Link>
-      </ButtonGroup>
+      <form onSubmit={handleOnSubmit} className={classes.jumpTo}>
+      <input type="text" name="jumpToNo" placeholder={`${ctx.pageNo}/132`} id="pageNo" />
+      <Button disabled={ctx.loading} type="submit" size="sm" htmlFor="pageNo" >Jump&laquo;&raquo; </Button>
+      </form>
     </ButtonToolbar>
   );
 }

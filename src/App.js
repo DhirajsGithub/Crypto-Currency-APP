@@ -9,8 +9,7 @@ function App() {
     <Fragment>
     <main>
       <Routes>
-        <Route path="/" render={()=><Navigate to="/page/1" />} element={<Page/>} />
-        <Route path="/page/:pageNo" element={<Page />} />
+        <Route path="/*" render={()=><Navigate to="/" />} element={<Page/>} />
       </Routes>
     </main>
       

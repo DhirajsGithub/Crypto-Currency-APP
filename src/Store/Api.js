@@ -25,7 +25,6 @@ export const AuthContextProvider = (props) => {
   const [cryptoData, setCryptoData] = useState([]);
   const pageNoHandler = (pageNo) => {
     setPageNo(pageNo);
-    fetchCurrencyData();
   };
   const currencyHandler = (currency) => {
     serCurrency(currency);
@@ -59,7 +58,7 @@ export const AuthContextProvider = (props) => {
   }, [pageNo, currency]);
 
   return (
-    <AuthContext.Provider value={{ handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler}}>
+    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler}}>
       {props.children}
     </AuthContext.Provider>
   );

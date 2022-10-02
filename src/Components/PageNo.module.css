@@ -1,0 +1,9 @@
+.jumpTo{
+    margin-left: 2rem;
+    font-size:small;
+}
+.jumpTo input{
+    width: 4rem;
+    font-size: 1rem;
+    margin-right: 0.8rem;
+}

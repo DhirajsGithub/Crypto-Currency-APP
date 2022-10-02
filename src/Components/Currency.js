@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
+import AuthContext from "../Store/Api";
 import classes from "./Currency.module.css";
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
+
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a className={classes.headingLink}
     href=""
@@ -51,20 +53,50 @@ const CustomMenu = React.forwardRef(
 );
 
 const Currency = () => {
+
+  const ctx = useContext(AuthContext)
+
+  const [currency, setCurrency] = useState([])
+
+  const fetchCurrency = async ()=>{
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/supported_vs_currencies")
+    if(!response.ok){
+      throw new Error("Not Found Currency")
+    }
+    const data = await response.json();
+    setCurrency(data)
+  }
+
+  useEffect(() => {
+    try {
+       fetchCurrency()
+    } catch (error) {
+      alert(error)
+    }
+   
+  }, [fetchCurrency])
+
+  const ChangeCurrencyHandler = (item)=>{
+    ctx.handleCurrency(item)
+    console.log(item)
+  }
+  
+
   return (
     <div className={classes.dropdown}>
-      <Dropdown className={classes.dropdownSec}>
+      <Dropdown >
         <Dropdown.Toggle className={classes.heading} as={CustomToggle} id="dropdown-custom-dark-components">
           Currency
         </Dropdown.Toggle>
 
-        <Dropdown.Menu variant="dark" as={CustomMenu}>
-          <Dropdown.Item eventKey="1">Red</Dropdown.Item>
-          <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-          <Dropdown.Item eventKey="3" active>
-            Orange
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
+        <Dropdown.Menu className={classes.dropdownSec} variant="light" as={CustomMenu}>
+        <Dropdown.Item active eventKey="0">usd</Dropdown.Item>
+        {currency.map((item, index)=>{
+          return(
+            <Dropdown.Item key={item} onClick={()=>{ChangeCurrencyHandler(item)}} eventKey={index+1}>{item}</Dropdown.Item>
+          )
+        })}
+          
         </Dropdown.Menu>
       </Dropdown>
     </div>

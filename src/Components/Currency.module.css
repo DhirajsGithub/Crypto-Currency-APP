@@ -1,20 +1,26 @@
 .dropdown{
-    text-align: end;
+    margin-top: 1rem;
+    margin-left: 3rem;
 }
 .dropdownSec{
-    /* display: flex; */
-    max-width: 100%;
-    /* border: 1px solid red !important; */
-    margin: 0 1rem;
+    max-height: 30rem;
+    overflow: scroll;
 }
 a.headingLink
 {
   text-decoration:none;
-  color: blue;
+  color:#183052;
 
 }
 a.headingLink:hover{
+    color: #264c81;
     cursor: pointer;
     text-decoration: underline;
     text-shadow: 0.7px 0.8px 1px  rgba(0, 0, 0, 0.223) ;
+}
+
+@media screen and (max-width: 900px) {
+    .dropdown{
+        margin-left: 0;
+    }
 }
