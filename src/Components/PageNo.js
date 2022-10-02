@@ -1,33 +1,102 @@
-import Pagination from 'react-bootstrap/Pagination';
-import PageItem from 'react-bootstrap/PageItem'
+import { useContext, useState } from "react";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import { Link } from "react-router-dom";
+import AuthContext from "../Store/Api";
 
-function PageNo() {
+function PageNo(props) {
+  const ctx = useContext(AuthContext);
+  const pageNoIs = Number(props.PageNo);
+  const handlePagination = () => {
+    console.log(props.pageNo);
+    ctx.handlePageNo(props.pageNo);
+  };
 
-    const pageItems = ()=>{
-        for(let i=2; i<=13172; i++){
-            return <Pagination.Item value={i} >{i}</Pagination.Item>
-        }
-    }
-    const handleOnClick = (event)=>{
-        console.log(event)
-    }
-    
+  const [active, setActive] = useState(1);
   return (
-    <Pagination onClick={handleOnClick}>
-      <Pagination.First/>
-      <Pagination.Prev/>
-      
-      <Pagination.Item value="3" >{1}</Pagination.Item>
-      <Pagination.Ellipsis />
+    <ButtonToolbar aria-label="Toolbar with button groups">
+      <ButtonGroup className="me-2" aria-label="First group">
+        <Link
+          style={{ textDecoration: "none", border: "none" }}
+          onClick={() => {
+            active > 1 && setActive(active - 1);
+            handlePagination();
+          }}
+          to={`/page/${active - 1}`}
+        >
+          <Button>Prev</Button>
+        </Link>
+      </ButtonGroup>
+      <ButtonGroup className="me-2" aria-label="Second group">
+        <Link
+          style={{ textDecoration: "none" }}
+          onClick={() => {
+            handlePagination();
+            active - 10 > 0 && setActive(active - 10);
+          }}
+          to={`/page/${active}`}
+        >
+          <Button active>{active}</Button>
+        </Link>
+        <Link
+          style={{ textDecoration: "none" }}
+          onClick={() => {
+            handlePagination();
+            active - 20 > 0 && setActive(active - 20);
+          }}
+          to={`/page/${active + 1}`}
+        >
+          <Button>{active + 1}</Button>
+        </Link>
+        <Link>
+          <Button>...</Button>
+        </Link>
 
-      
-      {pageItems}
+        <Link
+          onClick={() => {
+            active < 121 && setActive(active + 10);
+            handlePagination();
+          }}
+          to={`/page/${active + 10}`}
+        >
+          <Button>{active + 10}</Button>
+        </Link>
+        <Link
+          onClick={() => {
+            active < 111 && setActive(active + 20);
+            handlePagination();
+          }}
+          to={`/page/${active + 20}`}
+        >
+          <Button>{active + 20}</Button>
+        </Link>
+        <Link>
+          <Button>...</Button>
+        </Link>
 
-      <Pagination.Ellipsis />
-      <Pagination.Item value="13173" >{13173}</Pagination.Item>
-      <Pagination.Next />
-      <Pagination.Last/>
-    </Pagination>
+        <Link
+          onClick={() => {
+            //  active <111 && setActive(active+20)
+            handlePagination();
+          }}
+          to="/page/132"
+        >
+          <Button>132</Button>
+        </Link>
+      </ButtonGroup>
+      <ButtonGroup aria-label="Third group">
+        <Link
+          onClick={() => {
+            active < 110 && setActive(active + 1);
+            handlePagination();
+          }}
+          to={`/page/${active}`}
+        >
+          <Button>Next</Button>
+        </Link>
+      </ButtonGroup>
+    </ButtonToolbar>
   );
 }
 

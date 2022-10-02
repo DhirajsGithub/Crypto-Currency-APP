@@ -12,8 +12,7 @@ const Home = () => {
     <Fragment >
         <Header />
         <Slogan />  
-         {/* <Currency /> */}
-         {!ctx.loading && <Reload />}
+         <Reload />
         <Coins /> 
      
     </Fragment>

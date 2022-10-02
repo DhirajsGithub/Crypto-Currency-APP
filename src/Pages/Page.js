@@ -1,22 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import Home from '../Components/Home'
 import PageNo from '../Components/PageNo';
-import AuthContext from '../Store/Api';
 
 const Page = () => {
     const params = useParams();
-    console.log(params.pageNo)
-    const ctx = useContext(AuthContext);
-    const handlePagination = ()=>{
-      ctx.handlePageNo(params.pageNo)
-    }
-    
+  
   return (
     <>
+    <PageNo pageNo ={params.pageNo} />
       <Home />
-    <button onClick={handlePagination}>btn</button> 
-    <PageNo />
+    
     </>
     
   )

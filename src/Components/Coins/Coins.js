@@ -12,7 +12,8 @@ export const Coins = () => {
 
   const [sortedCryptoData, setSortedCryptoData] = useState(ctx.cryptoData);
   const [sorted, setSorted] = useState(true);
-  console.log("reloading");
+  // console.log("reloading");
+  console.log(ctx.loading)
 
   const sortData = (head) => {
     setSorted(false);
@@ -96,6 +97,7 @@ export const Coins = () => {
   return (
     <Fragment>
       {ctx.loading && <Loading />}
+      <br />
       <Table className={classes.coins} striped hover variant="light" responsive>
         <thead>
           <Heading sortData={sortData} />

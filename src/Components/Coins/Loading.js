@@ -3,7 +3,7 @@ import Spinner from 'react-bootstrap/Spinner';
 function Loading() {
   return (
     // no variant for dark mode
-    <div style={{textAlign: 'center'}}>
+    <div style={{ position: 'absolute', left:'50%'}}>
 
    
     <Spinner animation="border" variant="success" role="status">
