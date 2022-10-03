@@ -1,7 +1,5 @@
 import React from "react";
 import Coin from "../Details/Coin";
-import HighLow24h from "../Details/High24h";
-import Low24h from "../Details/Low24h";
 import Price from "../Details/Price";
 import Time from "../Details/Time";
 import { VolumeCap } from "../Details/VolumeCap";
@@ -11,7 +9,7 @@ const Row = (props) => {
   return (
     <tr>
       <td>{market_cap_rank}</td>
-      <Coin name={name} symbol={symbol} image={image} />
+      <Coin id={id} name={name} symbol={symbol} image={image} />
       <Price price ={price}/>
       <Time change24h={change24h} />
       <VolumeCap volume={high_24h} />
