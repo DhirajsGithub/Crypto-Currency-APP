@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const AuthContext = React.createContext({
   pageNo: 1,
-  currency: "usd",
+  currency: {"name" : "usd", "symbol": "$"},
   perPage: 100,
   sparkline: false,
   loading: false,
@@ -20,7 +20,7 @@ export default AuthContext;
 
 export const AuthContextProvider = (props) => {
   const [pageNo, setPageNo] = useState(1);
-  const [currency, serCurrency] = useState("usd");
+  const [currency, serCurrency] = useState({"name" : "usd", "symbol": "$"});
   const [loading, setLoading] = useState(false);
   const [cryptoData, setCryptoData] = useState([]);
   const pageNoHandler = (pageNo) => {
@@ -28,6 +28,7 @@ export const AuthContextProvider = (props) => {
   };
   const currencyHandler = (currency) => {
     serCurrency(currency);
+    console.log(currency)
   };
   const loadingHandler = ()=>{
     fetchCurrencyData();
@@ -39,7 +40,7 @@ export const AuthContextProvider = (props) => {
   async function fetchCurrencyData() {
     setLoading(true);
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`
     );
     if (!response.ok) {
       throw new Error("response is not ok", response);
@@ -58,7 +59,7 @@ export const AuthContextProvider = (props) => {
   }, [pageNo, currency]);
 
   return (
-    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler}}>
+    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler, currency, }}>
       {props.children}
     </AuthContext.Provider>
   );
