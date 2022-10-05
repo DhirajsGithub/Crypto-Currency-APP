@@ -1,18 +1,12 @@
-import React from 'react'
-import Home from '../Components/Home'
-import PageNo from '../Components/PageNo';
+import React from "react";
+import Home from "../Components/Home";
 
 const Page = () => {
-
-  
   return (
     <>
-   
       <Home />
-
     </>
-    
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

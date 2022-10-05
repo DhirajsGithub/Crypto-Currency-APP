@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Coin.module.css";
 import Figure from "react-bootstrap/Figure";
 import { Link } from "react-router-dom";
+import AuthContext from "../../../Store/Api";
 
 const Coin = (props) => {
+  const ctx = useContext(AuthContext);
   return (
-    <td className={classes.coin}>
+    <td onClick={()=>{ctx.coinIdHandler(props.id)}} className={classes.coin}>
       <Link
         style={{ color: "inherit", textDecoration: "inherit" }}
-        to={`/coin/${props.id}`}
+        to={`/coins/${props.id}`}
       >
         <>
           <Figure>

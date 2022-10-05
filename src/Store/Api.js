@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Origin','http://localhost:3000');
+
 const AuthContext = React.createContext({
   pageNo: 1,
   currency: {"name" : "usd", "symbol": "$"},
@@ -43,7 +49,12 @@ export const AuthContextProvider = (props) => {
   async function fetchCurrencyData() {
     setLoading(true);
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`,{
+        method : "GET",
+        credentials: 'include',
+        method: 'POST',
+        headers: headers
+      }
     );
     if (!response.ok) {
       throw new Error("response is not ok", response);
@@ -67,6 +78,11 @@ export const AuthContextProvider = (props) => {
   const [coinDetail, setCoinDetail] = useState([]);
   const [loading2, setLoading2] = useState(false);
 
+  const coinIdHandler = (coinId)=>{
+    setCoindId(coinId);
+    fetchCoinData();
+  }
+
   const fetchCoinData = async function () {
     setLoading2(true)
     const response = await fetch(
@@ -77,9 +93,10 @@ export const AuthContextProvider = (props) => {
         "Response is not ok from Api2 fetching coin detail adhere"
       );
     }
-    setLoading2(false);
     const data = await response.json();
     setCoinDetail(data);
+    setLoading2(false);
+
   };
 
   useEffect(() => {
@@ -89,11 +106,11 @@ export const AuthContextProvider = (props) => {
         console.log("error")
     }
   }, [coinId]);
-  // console.log(coinDetail)
+  console.log(coinDetail)
 
 
   return (
-    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler, currency, loading2,coinId,coinDetail  }}>
+    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler, currency, loading2,coinId,coinDetail,coinIdHandler,  }}>
       {props.children}
     </AuthContext.Provider>
   );

@@ -1,0 +1,8 @@
+.main{
+    /* max-width: 100%; */
+    border: 1px solid red;
+}
+.coinName, .symbol, .heading, .price h3{
+    display: inline-block;
+    margin-left: 0.2rem;
+}

@@ -10,8 +10,8 @@ function App() {
     <Fragment>
     <main>
       <Routes>
-        <Route path="/" render={()=><Navigate to="/" />} element={<Page/>} />
-        <Route path="/coin/:coinId" element={<CoinDetail />} />
+        <Route path="/" render={()=><Navigate to="/coins" />} element={<Page/>} />
+        <Route path="/coins/:coinId" element={<CoinDetail />} />
       </Routes>
     </main>
       
