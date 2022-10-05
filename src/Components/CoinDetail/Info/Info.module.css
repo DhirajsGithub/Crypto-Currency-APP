@@ -1,0 +1,33 @@
+.main {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.main a {
+  color: inherit !important;
+  text-decoration: inherit !important;
+}
+.main Button {
+  margin: 0.5rem;
+  font-weight: bold;
+}
+.info Button:hover {
+  color: lightgreen !important;
+}
+.info span {
+  color: grey;
+}
+.info div {
+    /* max-width: 80%; */
+  display: grid;
+  /* column-gap: 10px;
+  row-gap: 5px; */
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

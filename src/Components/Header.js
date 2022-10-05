@@ -10,7 +10,7 @@ function Header() {
   return (
     <Navbar className={classes.navbar} bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand className={classes.brand} href="#">DMarket</Navbar.Brand>
+        <Navbar.Brand className={classes.brand} href="/">DMarket</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -18,7 +18,7 @@ function Header() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1" className={classes.currency}>Currencies</Nav.Link>
+            <Nav.Link href="/coins" className={classes.currency}>Currencies</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

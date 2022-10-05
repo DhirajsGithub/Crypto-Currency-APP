@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('Origin','http://localhost:3000');
+let headers = {
+  "Host": "http://localhost:3000/",
+  "Origin": "http://localhost:3000/",
+  "Access-Control-Request-Method": "GET",
+ " Access-Control-Request-Headers": "Authorization, Content-Type"
+}
 
 const AuthContext = React.createContext({
   pageNo: 1,
@@ -49,12 +50,7 @@ export const AuthContextProvider = (props) => {
   async function fetchCurrencyData() {
     setLoading(true);
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`,{
-        method : "GET",
-        credentials: 'include',
-        method: 'POST',
-        headers: headers
-      }
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=${pageNo}&sparkline=true`
     );
     if (!response.ok) {
       throw new Error("response is not ok", response);

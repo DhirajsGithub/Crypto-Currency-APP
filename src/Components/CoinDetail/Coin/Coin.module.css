@@ -2,7 +2,14 @@
     /* max-width: 100%; */
     border: 1px solid red;
 }
-.coinName, .symbol, .heading, .price h3{
+.coinName, .symbol, .heading, .price h3, .coinNumbers p{
     display: inline-block;
     margin-left: 0.2rem;
+}
+.coinNumbers p{
+    font-size: smaller;
+   text-decoration: underline;
+}
+.coinNumbers p span {
+    font-weight: bold;
 }
