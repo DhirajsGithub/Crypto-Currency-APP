@@ -1,13 +1,14 @@
 .main{
     /* max-width: 100%; */
     border: 1px solid red;
+    padding-left: 1rem;
 }
 .coinName, .symbol, .heading, .price h3, .coinNumbers p{
     display: inline-block;
     margin-left: 0.2rem;
 }
 .coinNumbers p{
-    font-size: smaller;
+    /* font-size: smaller; */
    text-decoration: underline;
 }
 .coinNumbers p span {

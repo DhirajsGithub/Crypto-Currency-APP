@@ -9,10 +9,10 @@ import AuthContext from "../../Store/Api";
 import Info from "./Info/Info";
 import Loading from "../Coins/Loading";
 
-const Landing = () => {
+const Landing = (props) => {
   const ctx = useContext(AuthContext)
-  const[coinDetail, setCoinDetail] = useState([]);
-  const {name, image, market_cap_rank: rank,symbol, market_data  } = ctx.coinDetail;
+  const {name, image, market_cap_rank: rank,symbol, market_data, links  } = ctx.coinDetail;
+     
   console.log(ctx.coinDetail)
   return (
     <div>
@@ -33,12 +33,12 @@ const Landing = () => {
         }
         loading={ctx.loading2}
       />
-      {ctx.loading2 && <Loading />}
+    
       <Container>
-        {!ctx.loading2 && <Row>
-          <Col sm={6}><Coin name={name} image={image} rank={rank} symbol={symbol} marketData={market_data} /></Col>
-          <Col sm={6}><Info /></Col>
-        </Row>}
+       <Row>
+          <Col sm={7}><Coin name={name} image={image} rank={rank} symbol={symbol} marketData={market_data} /></Col>
+          <Col name={name} sm={5}><Info links={links}  /></Col>
+        </Row>
       </Container>
     </div>
   );

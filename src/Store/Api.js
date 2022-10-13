@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-let headers = {
-  "Host": "http://localhost:3000/",
-  "Origin": "http://localhost:3000/",
-  "Access-Control-Request-Method": "GET",
- " Access-Control-Request-Headers": "Authorization, Content-Type"
-}
-
 const AuthContext = React.createContext({
   pageNo: 1,
   currency: {"name" : "usd", "symbol": "$"},

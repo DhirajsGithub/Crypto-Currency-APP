@@ -1,6 +1,7 @@
 .main {
   border: 1px solid black;
-  text-align: center;
+  /* text-align: end; */
+  padding-left: 1rem;
 }
 
 .main a {
@@ -17,17 +18,19 @@
 .info span {
   color: grey;
 }
-.info div {
-    /* max-width: 80%; */
-  display: grid;
-  /* column-gap: 10px;
-  row-gap: 5px; */
-  grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto;
-}
-
 .info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  /* justify-content: center; */
+
+}
+.info span{
+  min-width: 20%;
+}
+
+@media screen and (max-width : 1000px){
+  .info span{
+   min-width: inherit;
+  }
 }

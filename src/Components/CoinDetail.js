@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react'
 import AuthContext from '../Store/Api'
 import Landing from './CoinDetail/Landing'
+import Loading from './Coins/Loading'
 import Header from './Header'
 import Slogan from './Slogan'
 
@@ -10,7 +11,9 @@ const CoinDetail = () => {
   return (
     <Fragment>
       <Header  />
-      <Landing />
+      {ctx.loading2 && <Loading />}
+      {!ctx.loading2 && <Landing />}
+      
     </Fragment>
   )
 }
