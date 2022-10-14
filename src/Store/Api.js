@@ -32,10 +32,10 @@ export const AuthContextProvider = (props) => {
   };
   const currencyHandler = (currency) => {
     serCurrency(currency);
-    console.log(currency)
   };
   const loadingHandler = ()=>{
     fetchCurrencyData();
+    fetchCoinData();
   }
   
   // ########################  changing Coins API ##############################
@@ -73,7 +73,7 @@ export const AuthContextProvider = (props) => {
   }
 
   const fetchCoinData = async function () {
-    setLoading2(true)
+    setLoading(true)
     const response = await fetch(
       "https://api.coingecko.com/api/v3/coins/" + coinId
     );
@@ -84,7 +84,7 @@ export const AuthContextProvider = (props) => {
     }
     const data = await response.json();
     setCoinDetail(data);
-    setLoading2(false);
+    setLoading(false);
 
   };
 
@@ -95,11 +95,10 @@ export const AuthContextProvider = (props) => {
         console.log("error")
     }
   }, [coinId]);
-  console.log(coinDetail)
 
 
   return (
-    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler, currency, loading2,coinId,coinDetail,coinIdHandler,  }}>
+    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler, currency,coinId,coinDetail,coinIdHandler,  }}>
       {props.children}
     </AuthContext.Provider>
   );

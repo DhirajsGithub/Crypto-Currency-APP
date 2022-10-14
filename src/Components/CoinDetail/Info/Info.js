@@ -3,8 +3,6 @@ import { Button } from "react-bootstrap";
 import classes from "./Info.module.css";
 
 const Info = (props) => {
-  let links = props.links?.homepage;
-  console.log(props.links?.repos_url.github.length);
   function extractDomain(url) {
     var domain;
     //find & remove protocol (http, ftp, etc.) and get domain
@@ -16,9 +14,9 @@ const Info = (props) => {
     return domain;
   }
   function extractAfterslash(url) {
-    let l = url.lastIndexOf("/")
+    let l = url.lastIndexOf("/");
     let ans;
-    ans = url.slice(l+1)
+    ans = url.slice(l + 1);
     return ans;
   }
 
@@ -67,7 +65,7 @@ const Info = (props) => {
         <div className={classes.info}>
           <span>Blogchain site</span>
           <div>
-          {props.links.blockchain_site.map((site, index) => {
+            {props.links.blockchain_site.map((site, index) => {
               if (site.length > 1) {
                 return (
                   <a href={site} key={index} target="_blank">
@@ -86,12 +84,12 @@ const Info = (props) => {
         <div className={classes.info}>
           <span>Repos url</span>
           <div>
-          {props.links.repos_url.github.map((site, index) => {
+            {props.links.repos_url.github.map((site, index) => {
               if (site.length > 1) {
                 return (
                   <a href={site} key={index} target="_blank">
                     <Button size="sm" variant="secondary">
-                    {extractAfterslash(site)}
+                      {extractAfterslash(site)}
                     </Button>
                   </a>
                 );
@@ -100,40 +98,6 @@ const Info = (props) => {
           </div>
         </div>
       )}
-
-      <div className={classes.info}>
-        <span>Website</span>
-        <div>
-          <Button size="sm" variant="secondary">
-            bitcoin.org
-          </Button>
-          <Button size="sm" variant="secondary">
-            whitepaper
-          </Button>
-        </div>
-      </div>
-      <div className={classes.info}>
-        <span>Website</span>
-        <div>
-          <Button size="sm" variant="secondary">
-            bitcoin.org
-          </Button>
-          <Button size="sm" variant="secondary">
-            whitepaper
-          </Button>
-        </div>
-      </div>
-      <div className={classes.info}>
-        <span>Website</span>
-        <div>
-          <Button size="sm" variant="secondary">
-            bitcoin.org
-          </Button>
-          <Button size="sm" variant="secondary">
-            whitepaper
-          </Button>
-        </div>
-      </div>
     </div>
   );
 };

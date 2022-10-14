@@ -13,7 +13,6 @@ const Page2 = () => {
   }, [param.coinId])
   
  
-  console.log(param.coinId)
   return (
     <CoinDetail />
   )

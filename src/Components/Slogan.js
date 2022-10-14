@@ -12,7 +12,6 @@ const Slogan = (props) => {
     data = data.gecko_says;
     data = data.slice(5);
     setStatus(data);
-    console.log(data);
   };
   useEffect(() => {
     try {

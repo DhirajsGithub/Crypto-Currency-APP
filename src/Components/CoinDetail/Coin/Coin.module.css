@@ -1,7 +1,7 @@
 .main{
     /* max-width: 100%; */
-    border: 1px solid red;
-    padding-left: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 0.5rem 1rem;
 }
 .coinName, .symbol, .heading, .price h3, .coinNumbers p{
     display: inline-block;
@@ -9,6 +9,7 @@
 }
 .coinNumbers p{
     /* font-size: smaller; */
+    font-size: large;
    text-decoration: underline;
 }
 .coinNumbers p span {

@@ -7,12 +7,10 @@ import Slogan from './Slogan'
 
 const CoinDetail = () => {
   const ctx = useContext(AuthContext)
-  console.log(ctx.coinData)
   return (
     <Fragment>
       <Header  />
-      {ctx.loading2 && <Loading />}
-      {!ctx.loading2 && <Landing />}
+      {!ctx.loading && <Landing />}
       
     </Fragment>
   )
