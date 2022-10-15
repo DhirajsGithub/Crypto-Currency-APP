@@ -21,6 +21,6 @@ a.headingLink:hover{
 
 @media screen and (max-width: 900px) {
     .dropdown{
-        margin-left: 0;
+        margin-left: 5px;
     }
 }

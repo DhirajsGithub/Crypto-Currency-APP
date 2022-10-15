@@ -114,7 +114,7 @@ const Currency = () => {
           as={CustomToggle}
           id="dropdown-custom-dark-components"
         >
-          Currency
+          {ctx.currency.name} ({ctx.currency.symbol})
         </Dropdown.Toggle>
 
         <Dropdown.Menu

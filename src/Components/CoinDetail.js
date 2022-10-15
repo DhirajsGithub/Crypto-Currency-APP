@@ -1,19 +1,14 @@
-import React, { Fragment, useContext } from 'react'
-import AuthContext from '../Store/Api'
-import Landing from './CoinDetail/Landing'
-import Loading from './Coins/Loading'
-import Header from './Header'
-import Slogan from './Slogan'
+import React, { Fragment } from "react";
+import Landing from "./CoinDetail/Landing";
+import Header from "./Header";
 
 const CoinDetail = () => {
-  const ctx = useContext(AuthContext)
   return (
     <Fragment>
-      <Header  />
-      {!ctx.loading && <Landing />}
-      
+      <Header />
+      <Landing />
     </Fragment>
-  )
-}
+  );
+};
 
-export default CoinDetail
+export default CoinDetail;

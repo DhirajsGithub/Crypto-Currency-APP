@@ -1,0 +1,6 @@
+a#nav-dropdown-light-example.dropdown-toggle.nav-link::after{
+    content: none !important;
+}
+div.dropdown-menu.show.dropdown-menu.light{
+    max-height: 20rem;
+}
