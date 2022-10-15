@@ -5,25 +5,22 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import fetchCoinsList from "./CoinsList";
 import classes from "./Header.module.css";
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from "react-router-dom";
-
-
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Figure from "react-bootstrap/Figure";
+import img from "../Store/D_Market-removebg-preview.png"
 
 function Header() {
   const [search, setSearch] = useState("");
   const [coinList, setCoinList] = useState([]);
   const [searchCoinList, setSearchCoinList] = useState([]);
 
-
   const handleOnChange = (event) => {
     setSearch(event.target.value);
-    if(search.length > 0){
+    if (search.length > 0) {
       searchCoinss();
-    }else{
-      setSearchCoinList(coinList)
+    } else {
+      setSearchCoinList(coinList);
     }
-    
   };
   useEffect(() => {
     fetchCoinsList().then((data) => {
@@ -36,14 +33,14 @@ function Header() {
       return item.name.toLowerCase().startsWith(search.toLowerCase());
     });
     setSearchCoinList(newCoinList);
-    console.log(searchCoinList)
+    console.log(searchCoinList);
   };
 
   return (
     <Navbar className={classes.navbar} bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand className={classes.brand} href="/">
-          DMarket
+        DMarket
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -56,41 +53,31 @@ function Header() {
               Coins
             </Nav.Link>
           </Nav>
-         
 
           <NavDropdown
-              
-              id="nav-dropdown-light-example"
-              title= <Form className="d-flex">
-            <Form.Control
-              onChange={handleOnChange}
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-
-          </Form>
-              menuVariant="light"
-            >
+          className={classes.main}
+            id="nav-dropdown-light-example"
+            title=<Form className="d-flex">
+              <Form.Control
+                onChange={handleOnChange}
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+            </Form>
+            menuVariant="light"
+          >
             <div className={classes.dropdown}>
-              {searchCoinList.map((item)=>{
-              return (
-                <NavDropdown.Item >
-              <Link style={{ color: "inherit", textDecoration: "inherit" }} to={`/coins/${item.id}`} >{item.name}</Link>
-              </NavDropdown.Item>
-              )
-            })}
+              {searchCoinList.map((item, index) => {
+                return (
+                  <NavDropdown.Item href={`/coins/${item.id}`} key={index}>
+                    {item.name}
+                  </NavDropdown.Item>
+                );
+              })}
             </div>
-            
-              
-            
-            </NavDropdown>
-      
-      
-
-     
-
+          </NavDropdown>
         </Navbar.Collapse>
       </Container>
     </Navbar>

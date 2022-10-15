@@ -1,0 +1,17 @@
+.main{
+    padding: 0;
+    margin-top: 3rem;
+}
+.content{
+    display: flex;
+}
+.content p{
+    font-size: large;
+    margin: 1rem;
+}
+.content p i{
+    font-size: larger;
+}
+.content p i:hover{
+    cursor: pointer;
+}

@@ -7,6 +7,7 @@ import classes from "./Coins.module.css";
 import AuthContext from "../../Store/Api";
 import Loading from "./Loading";
 import PageNo from "../PageNo";
+import CoolPage from "./ScrollToTop";
 
 export const Coins = () => {
   const scrollUpRef = useRef();
@@ -120,6 +121,7 @@ export const Coins = () => {
               })}
         </tbody>
       </Table>
+      <CoolPage />
       <PageNo scrollUp={scrollUp} />
     </Fragment>
   );

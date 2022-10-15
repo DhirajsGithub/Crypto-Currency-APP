@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import CoinDetail from '../Components/CoinDetail'
+import Footer from '../Components/Footer';
 import AuthContext from '../Store/Api';
 
 const Page2 = () => {
@@ -14,7 +15,11 @@ const Page2 = () => {
   
  
   return (
-    <CoinDetail />
+    <>
+      <CoinDetail />
+      <Footer />
+    </>
+    
   )
 }
 

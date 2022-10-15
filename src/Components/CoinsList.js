@@ -4,7 +4,6 @@ const fetchCoinsList = async () => {
     throw new Error("Response is not OK");
   }
   const data = await response.json();
-//   console.log(data)
   return data;
 };
 

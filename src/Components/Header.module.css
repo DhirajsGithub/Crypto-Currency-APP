@@ -3,6 +3,10 @@
     padding: 10px;
 }
 .dropdown{
-    margin-right: 2.5rem;
-    
+    max-height: 30rem;
+    overflow: scroll;
+    max-width: 13rem;
+}
+.main{
+    margin-right: 1rem;
 }
