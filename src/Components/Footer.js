@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import AuthContext from "../Store/Api";
 import classes from "./Footer.module.css";
 
 const Footer = () => {
+  const ctx = useContext(AuthContext)
   return (
     <Container fluid className={classes.main}>
-      <Navbar expand="lg" variant="light" bg="light" className="justify-content-center">
-        <div className={classes.content}>
+      <Navbar expand="lg" variant={ctx.isDark ? 'dark' : 'light'} bg={ctx.isDark ? 'dark' : 'light'} className="justify-content-center">
+        <div className={`${classes.content} ${ctx.isDark && classes.classLight}`}>
           <p>
             Made with 💙 by <span>D</span>{" "}
           </p>

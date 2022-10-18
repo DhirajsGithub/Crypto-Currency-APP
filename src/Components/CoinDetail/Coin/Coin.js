@@ -25,10 +25,14 @@ const Coin = (props) => {
   let low_24h = Intlfunc(props.marketData?.low_24h[currency])
   let change24 = props.marketData?.price_change_percentage_24h;
   change24 = Math.round(change24 * 10) / 10;
+  let marketKapRank = props.rank
+  if(marketKapRank == null){
+    marketKapRank = "undefine"
+  }
   
   return (
     <div className={classes.main}>
-      <Badge bg="secondary">Rank #{props.rank}</Badge>
+      <Badge bg="secondary">Rank # {marketKapRank}</Badge>
       <br />
       <Figure>
             <Figure.Image

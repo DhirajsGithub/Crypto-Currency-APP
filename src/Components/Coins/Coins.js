@@ -106,7 +106,7 @@ export const Coins = () => {
       {ctx.loading && <Loading />}
       <br />
      
-      <Table className={classes.coins} striped hover variant="light" responsive>
+      <Table className={classes.coins} striped hover variant={ctx.isDark ? 'dark' : 'light'} responsive>
         <thead >
         
           <Heading sorted={sorted} sortData={sortData} />

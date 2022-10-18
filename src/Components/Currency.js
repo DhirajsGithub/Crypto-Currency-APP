@@ -8,10 +8,12 @@ import classes from "./Currency.module.css";
 // Dropdown needs access to the DOM node in order to position the Menu
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  
   <a
     className={classes.headingLink}
     href=""
     ref={ref}
+    
     onClick={(e) => {
       e.preventDefault();
       onClick(e);
@@ -110,6 +112,7 @@ const Currency = () => {
     <div className={classes.dropdown}>
       <Dropdown>
         <Dropdown.Toggle
+       style = {{color: ctx.isDark ? "#264c81" : "#183052"}}
           className={classes.heading}
           as={CustomToggle}
           id="dropdown-custom-dark-components"
@@ -119,7 +122,7 @@ const Currency = () => {
 
         <Dropdown.Menu
           className={classes.dropdownSec}
-          variant="light"
+          variant={ctx.isDark ? 'dark' : 'light'}
           as={CustomMenu}
         >
           {currency.map((item, index) => {

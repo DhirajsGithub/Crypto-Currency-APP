@@ -2,30 +2,31 @@ import React, { useEffect, useState } from "react";
 
 const AuthContext = React.createContext({
   pageNo: 1,
-  currency: {"name" : "usd", "symbol": "$"},
+  currency: { name: "usd", symbol: "$" },
   loading: false,
-  reload : false,
+  reload: false,
   cryptoData: [],
   handlePageNo: (pageNo) => {},
   handleCurrency: (currency) => {},
 
-  
+  isDark: false,
+  handleTheme: () => {},
+
   coinId: "bitcoin",
   coinData: [],
   loading2: false,
   handleCoinId: (coinId) => {},
-
 });
 
 export default AuthContext;
 
 export const AuthContextProvider = (props) => {
-
-    // ########################  Coins API ##############################
+  // ########################  Coins API ##############################
   const [pageNo, setPageNo] = useState(1);
-  const [currency, serCurrency] = useState({"name" : "usd", "symbol": "$"});
+  const [currency, serCurrency] = useState({ name: "usd", symbol: "$" });
   const [loading, setLoading] = useState(false);
   const [cryptoData, setCryptoData] = useState([]);
+  const [isDark, setIsDark] = useState(false);
 
   const pageNoHandler = (pageNo) => {
     setPageNo(pageNo);
@@ -33,11 +34,19 @@ export const AuthContextProvider = (props) => {
   const currencyHandler = (currency) => {
     serCurrency(currency);
   };
-  const loadingHandler = ()=>{
+  const loadingHandler = () => {
     fetchCurrencyData();
     fetchCoinData();
-  }
-  
+  };
+
+  const handleTheme = () => {
+    if (isDark) {
+      setIsDark(false);
+    } else {
+      setIsDark(true);
+    }
+  };
+
   // ########################  changing Coins API ##############################
 
   async function fetchCurrencyData() {
@@ -61,19 +70,18 @@ export const AuthContextProvider = (props) => {
     }
   }, [pageNo, currency]);
 
-
   // ######################## coinDetail API  ##############################
   const [coinId, setCoindId] = useState("bitcoin");
   const [coinDetail, setCoinDetail] = useState([]);
   const [loading2, setLoading2] = useState(false);
 
-  const coinIdHandler = (coinId)=>{
+  const coinIdHandler = (coinId) => {
     setCoindId(coinId);
     fetchCoinData();
-  }
+  };
 
   const fetchCoinData = async function () {
-    setLoading(true)
+    setLoading(true);
     const response = await fetch(
       "https://api.coingecko.com/api/v3/coins/" + coinId
     );
@@ -85,20 +93,33 @@ export const AuthContextProvider = (props) => {
     const data = await response.json();
     setCoinDetail(data);
     setLoading(false);
-
   };
 
   useEffect(() => {
     try {
-        fetchCoinData();
+      fetchCoinData();
     } catch (error) {
-        console.log("error")
+      console.log("error");
     }
   }, [coinId]);
 
-
   return (
-    <AuthContext.Provider value={{ pageNo: pageNo, handlePageNo: pageNoHandler, handleCurrency: currencyHandler, cryptoData :  cryptoData, loading, loadingHandler, currency,coinId,coinDetail,coinIdHandler,  }}>
+    <AuthContext.Provider
+      value={{
+        pageNo: pageNo,
+        handlePageNo: pageNoHandler,
+        handleCurrency: currencyHandler,
+        cryptoData: cryptoData,
+        loading,
+        loadingHandler,
+        currency,
+        coinId,
+        coinDetail,
+        coinIdHandler,
+        isDark,
+        handleTheme,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

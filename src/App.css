@@ -4,3 +4,12 @@ a#nav-dropdown-light-example.dropdown-toggle.nav-link::after{
 div.dropdown-menu.show.dropdown-menu.light{
     max-height: 20rem;
 }
+:root {
+    --color-toggle-light: rgb(180, 180, 0);
+    --color-toggle-dark: rgb(38, 38, 38);
+  }
+  
+.isDark{
+    color: #fafafa;
+    background-color: #212121;
+}

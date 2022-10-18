@@ -1,6 +1,7 @@
 .dropdown{
     margin-top: 1rem;
     margin-left: 3rem;
+    font-size: large;
 }
 .dropdownSec{
     max-height: 30rem;
@@ -9,11 +10,11 @@
 a.headingLink
 {
   text-decoration:none;
-  color:#183052;
+  color:#2c548c;
 
 }
 a.headingLink:hover{
-    color: #264c81;
+    color: #3c78cb;
     cursor: pointer;
     text-decoration: underline;
     text-shadow: 0.7px 0.8px 1px  rgba(0, 0, 0, 0.223) ;

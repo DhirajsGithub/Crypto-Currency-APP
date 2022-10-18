@@ -1,5 +1,5 @@
 .main{
-    padding: 0;
+    padding: 0 !important;
     margin-top: 3rem;
 }
 .content{
@@ -14,4 +14,7 @@
 }
 .content p i:hover{
     cursor: pointer;
+}
+.classLight {
+    color: rgb(249, 249, 249);
 }

@@ -1,7 +1,7 @@
 .reload{
     text-align: end;
     font-size:2rem; 
-    color:#183052;
+    color:#2c548c;
    
 }
 .reload div{
@@ -15,7 +15,7 @@
     /* transition-duration: infinite; */
     transform: rotate(180deg);
     transition-duration: 0.8s;
-    color: #264c81;
+    color: #3c78cb;
    
 }
 
