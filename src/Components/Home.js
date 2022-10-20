@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import AuthContext from "../Store/Api";
 import { Coins } from "./Coins/Coins";
-import Header from "./Header";
 import Reload from "./Reload";
 import Slogan from "./Slogan";
 import Currency from "./Currency";
@@ -11,7 +10,6 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Header />
       <Slogan
         hh2={<h2>Explore</h2>}
         hh3={<h3>Cryptocurrency Data by DMarket</h3>}

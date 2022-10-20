@@ -98,10 +98,10 @@ if(ctx.loading2){
         <Row style={{margin : '0 auto'}}>
           <h4>Price Change percentage</h4>
           {["sm"].map((breakpoint) => (
-            <ListGroup  key={breakpoint} horizontal={breakpoint}>
+            <ListGroup bg="dark" key={breakpoint} horizontal={breakpoint}>
               {priceChangePer.map((item, index) => {
                 return (
-                  <ListGroup.Item key={index}>
+                  <ListGroup.Item variant={`${ctx.isDark && "dark"}`} key={index}>
                     {" "}
                     {item.name} &nbsp;&nbsp;&nbsp;&nbsp;{" "}
                     <span style={{ color: item.ch > 0 ? "green" : "#FF7F7F" }}>
@@ -115,9 +115,9 @@ if(ctx.loading2){
         </Row>
         <br />
         <Row>
-        <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>About {ctx.coinId}</Accordion.Header>
+        <Accordion  defaultActiveKey="0">
+      <Accordion.Item  eventKey="0">
+        <Accordion.Header >About {ctx.coinId}</Accordion.Header>
         <Accordion.Body>
          {ctx.coinDetail?.description?.en}
         </Accordion.Body>

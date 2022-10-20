@@ -5,7 +5,7 @@ import Header from "./Header";
 const CoinDetail = () => {
   return (
     <Fragment>
-      <Header />
+      {/* <Header /> */}
       <Landing />
     </Fragment>
   );

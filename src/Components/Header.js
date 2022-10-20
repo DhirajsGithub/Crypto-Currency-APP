@@ -68,9 +68,6 @@ function Header() {
           <Link style={{ color: ctx.isDark ? "#fafafa" : "black" , textDecoration: "inherit" }} to="/coins">
             Coins
           </Link>
-            {/* <Nav.Link href="/coins" className={classes.currency}>
-              Coins
-            </Nav.Link> */}
           </Nav>
 
           <div >
