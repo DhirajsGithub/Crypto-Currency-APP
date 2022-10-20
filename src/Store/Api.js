@@ -39,12 +39,8 @@ export const AuthContextProvider = (props) => {
     fetchCoinData();
   };
 
-  const handleTheme = () => {
-    if (isDark) {
-      setIsDark(false);
-    } else {
-      setIsDark(true);
-    }
+  const handleTheme = (isDark) => {
+    setIsDark(isDark)
   };
 
   // ########################  changing Coins API ##############################

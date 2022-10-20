@@ -19,20 +19,16 @@ function Header() {
   const ctx = useContext(AuthContext)
   const [search, setSearch] = useState("");
   const [coinList, setCoinList] = useState([]);
-  const [searchCoinList, setSearchCoinList] = useState([]);
+  // const [searchCoinList, setSearchCoinList] = useState([]);
 
-  const [isdark, setDark] = useState(false);
+  const [isdark, setDark] = useState(true);
   // const theme = isdark ? dark : light;
   // console.log("dark theme ", isdark)
   // console.log(ctx.darkTheme)
 
   const handleOnChange = (event) => {
     setSearch(event.target.value);
-    if (search.length > 0) {
-      searchCoinss();
-    } else {
-      setSearchCoinList(coinList);
-    }
+    searchCoinss();
   };
   useEffect(() => {
     fetchCoinsList().then((data) => {
@@ -44,12 +40,12 @@ function Header() {
     let newCoinList = coinList.filter((item) => {
       return item.name.toLowerCase().startsWith(search.toLowerCase());
     });
-    setSearchCoinList(newCoinList);
-    console.log(searchCoinList);
+    setCoinList(newCoinList);
+    console.log(coinList);
   };
   const handleThemeOnChange = ()=>{
     setDark((prev) => !prev);
-    ctx.handleTheme()
+    ctx.handleTheme(isdark)
   }
   console.log("theme is dark ", ctx.isDark)
 
@@ -78,9 +74,12 @@ function Header() {
           </Nav>
 
           <div >
-            <ToggleBtn  isDark={isdark}
+            <ToggleBtn  isDark={ctx.isDark}
           invertedIconLogic
-          onChange={handleThemeOnChange} />
+          onChange={handleThemeOnChange} 
+      
+          />
+          
           </div>
 
           <NavDropdown
@@ -100,13 +99,13 @@ function Header() {
             menuVariant={ctx.isDark ? 'dark' : 'light'}
           >
             <div className={classes.dropdown}>
-              {searchCoinList.map((item, index) => {
+              {coinList.map((item, index) => {
                 return (
-                  <NavDropdown.Item href={`/coins/${item.id}`} key={index}>
-                  {item.name}
-                  {/* <Link>
+                  <NavDropdown.Item key={index}>
                   
-                  </Link> */}
+                  <Link style={{ color: "inherit", textDecoration: "inherit" }} to={`/coins/${item.id}`}>
+                   {item.name}
+                  </Link>
                     
                   </NavDropdown.Item>
                 );
