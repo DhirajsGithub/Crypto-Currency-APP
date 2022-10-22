@@ -7,7 +7,12 @@ import AuthContext from "../../../Store/Api";
 const Coin = (props) => {
   const ctx = useContext(AuthContext);
   return (
-    <td onClick={()=>{ctx.coinIdHandler(props.id)}} className={classes.coin}>
+    <td
+      onClick={() => {
+        ctx.coinIdHandler(props.id);
+      }}
+      className={classes.coin}
+    >
       <Link
         style={{ color: "inherit", textDecoration: "inherit" }}
         to={`/coins/${props.id}`}

@@ -40,7 +40,7 @@ export const AuthContextProvider = (props) => {
   };
 
   const handleTheme = (isDark) => {
-    setIsDark(isDark)
+    setIsDark(isDark);
   };
 
   // ########################  changing Coins API ##############################
@@ -69,7 +69,6 @@ export const AuthContextProvider = (props) => {
   // ######################## coinDetail API  ##############################
   const [coinId, setCoindId] = useState("bitcoin");
   const [coinDetail, setCoinDetail] = useState([]);
-  const [loading2, setLoading2] = useState(false);
 
   const coinIdHandler = (coinId) => {
     setCoindId(coinId);

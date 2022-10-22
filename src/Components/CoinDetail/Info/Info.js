@@ -5,7 +5,6 @@ import classes from "./Info.module.css";
 const Info = (props) => {
   function extractDomain(url) {
     var domain;
-    //find & remove protocol (http, ftp, etc.) and get domain
     if (url.indexOf("://") > -1) {
       domain = url.split("/")[2];
     } else {
@@ -48,7 +47,7 @@ const Info = (props) => {
           <span>Website</span>
           <div>
             {props.links.homepage.map((site, index) => {
-              if (site.length > 1) {
+              if (site !== null && site.length >1) {
                 return (
                   <a href={site} key={index} target="_blank">
                     <Button size="sm" variant="secondary">
@@ -65,8 +64,9 @@ const Info = (props) => {
         <div className={classes.info}>
           <span>Blogchain site</span>
           <div>
+
             {props.links.blockchain_site.map((site, index) => {
-              if (site.length > 1) {
+              if (site !== null && site.length >1) {
                 return (
                   <a href={site} key={index} target="_blank">
                     <Button size="sm" variant="secondary">
@@ -85,7 +85,7 @@ const Info = (props) => {
           <span>Repos url</span>
           <div>
             {props.links.repos_url.github.map((site, index) => {
-              if (site.length > 1) {
+              if (site !== null && site.length >1) {
                 return (
                   <a href={site} key={index} target="_blank">
                     <Button size="sm" variant="secondary">

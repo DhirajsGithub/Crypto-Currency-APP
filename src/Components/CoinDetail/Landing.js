@@ -9,17 +9,12 @@ import Col from "react-bootstrap/Col";
 import AuthContext from "../../Store/Api";
 import Info from "./Info/Info";
 import Currency from "../../Components/Currency";
-import Reload from "../Reload"
-import Accordion from 'react-bootstrap/Accordion';
+import Reload from "../Reload";
+import Accordion from "react-bootstrap/Accordion";
 import Loading from "../Coins/Loading";
-
 
 const Landing = (props) => {
   const ctx = useContext(AuthContext);
-if(ctx.loading2){
-  console.log("whattttt")
-}
-  
   const {
     name,
     image,
@@ -57,15 +52,15 @@ if(ctx.loading2){
   return (
     <div>
       <Slogan
-        hh2={<h2>SOmething</h2>}
+        hh2={<h2>{name}</h2>}
         hh3={
-          <p>
+          <p >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
             provident.
           </p>
         }
         info={
-          <p>
+          <p style={{padding: '0 10px'}}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
             soluta minima accusantium nemo reiciendis laudantium, expedita illum
             possimus exercitationem tenetur?
@@ -95,13 +90,16 @@ if(ctx.loading2){
           </Col>
         </Row>
         <br />
-        <Row style={{margin : '0 auto'}}>
+        <Row style={{ margin: "0 auto" }}>
           <h4>Price Change percentage</h4>
           {["sm"].map((breakpoint) => (
             <ListGroup bg="dark" key={breakpoint} horizontal={breakpoint}>
               {priceChangePer.map((item, index) => {
                 return (
-                  <ListGroup.Item variant={`${ctx.isDark && "dark"}`} key={index}>
+                  <ListGroup.Item
+                    variant={`${ctx.isDark && "dark"}`}
+                    key={index}
+                  >
                     {" "}
                     {item.name} &nbsp;&nbsp;&nbsp;&nbsp;{" "}
                     <span style={{ color: item.ch > 0 ? "green" : "#FF7F7F" }}>
@@ -115,14 +113,12 @@ if(ctx.loading2){
         </Row>
         <br />
         <Row>
-        <Accordion  defaultActiveKey="0">
-      <Accordion.Item  eventKey="0">
-        <Accordion.Header >About {ctx.coinId}</Accordion.Header>
-        <Accordion.Body>
-         {ctx.coinDetail?.description?.en}
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+          <Accordion >
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>About {ctx.coinId}</Accordion.Header>
+              <Accordion.Body>{ctx.coinDetail?.description?.en}</Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </Row>
       </Container>
     </div>

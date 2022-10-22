@@ -8,23 +8,15 @@ import classes from "./Header.module.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import ToggleBtn from "./ToggleBtn";
 import AuthContext from "../Store/Api";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-// import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-
-// const light = { background: "lightGray" };
-// const dark = { background: "black" };
 
 function Header() {
-  const ctx = useContext(AuthContext)
+  const ctx = useContext(AuthContext);
   const [search, setSearch] = useState("");
   const [coinList, setCoinList] = useState([]);
-  // const [searchCoinList, setSearchCoinList] = useState([]);
 
   const [isdark, setDark] = useState(true);
-  // const theme = isdark ? dark : light;
-  // console.log("dark theme ", isdark)
-  // console.log(ctx.darkTheme)
 
   const handleOnChange = (event) => {
     setSearch(event.target.value);
@@ -41,46 +33,61 @@ function Header() {
       return item.name.toLowerCase().startsWith(search.toLowerCase());
     });
     setCoinList(newCoinList);
-    console.log(coinList);
   };
-  const handleThemeOnChange = ()=>{
+  const handleThemeOnChange = () => {
     setDark((prev) => !prev);
-    ctx.handleTheme(isdark)
-  }
-  console.log("theme is dark ", ctx.isDark)
+    ctx.handleTheme(isdark);
+  };
 
   return (
-    <Navbar className={classes.navbar} variant={ctx.isDark ? 'dark' : 'light'} bg={ctx.isDark ? 'dark' : 'light'} expand="lg">
+    <Navbar
+      className={classes.navbar}
+      variant={ctx.isDark ? "dark" : "light"}
+      bg={ctx.isDark ? "dark" : "light"}
+      expand="lg"
+    >
       <Container fluid>
+      <i class="fa-brands fa-wolf-pack-battalion"></i>
         <Navbar.Brand className={classes.brand}>
-        <Link style={{ color: "inherit", textDecoration: "inherit" }} to="/">
-         DMarket
-        </Link>
-      
+          <NavLink
+            className={(navData) => (navData.isActive ? classes.active : "")}
+            style={{ color: "inherit", textDecoration: "inherit" }}
+            to="/"
+          >
+            DMarket
+          </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className={`me-auto my-2 my-lg-0 ${classes.subBrand}`}
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-          <Link style={{ color: ctx.isDark ? "#fafafa" : "black" , textDecoration: "inherit" }} to="/coins">
-            Coins
-          </Link>
+            <NavLink
+              className={(navData) =>
+                navData.isActive ? classes.active : ""
+              }
+              style={{
+                color: ctx.isDark ? "#fafafa" : "black",
+                textDecoration: "inherit",
+              }}
+              to="/coins"
+            >
+              Coins <i className="fa-solid fa-coins"></i>
+            </NavLink>
           </Nav>
 
-          <div >
-            <ToggleBtn  isDark={ctx.isDark}
-          invertedIconLogic
-          onChange={handleThemeOnChange} 
-      
-          />
-          
+          <div>
+            <ToggleBtn
+              isDark={ctx.isDark}
+              invertedIconLogic
+              onChange={handleThemeOnChange}
+            />
           </div>
 
           <NavDropdown
-          className={classes.main}
+            className={classes.main}
             id="nav-dropdown-light-example"
             title=<Form className="d-flex">
               <Form.Control
@@ -90,20 +97,20 @@ function Header() {
                 className="me-2"
                 aria-label="Search"
                 value={search}
-                
               />
             </Form>
-            menuVariant={ctx.isDark ? 'dark' : 'light'}
+            menuVariant={ctx.isDark ? "dark" : "light"}
           >
             <div className={classes.dropdown}>
               {coinList.map((item, index) => {
                 return (
                   <NavDropdown.Item key={index}>
-                  
-                  <Link style={{ color: "inherit", textDecoration: "inherit" }} to={`/coins/${item.id}`}>
-                   {item.name}
-                  </Link>
-                    
+                    <Link
+                      style={{ color: "inherit", textDecoration: "inherit" }}
+                      to={`/coins/${item.id}`}
+                    >
+                      {item.name}
+                    </Link>
                   </NavDropdown.Item>
                 );
               })}

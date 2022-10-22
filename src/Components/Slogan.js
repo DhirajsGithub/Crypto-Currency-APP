@@ -32,8 +32,8 @@ const Slogan = (props) => {
         }}
       >
         <div>
-       {props.hh2}
-         {props.hh3}
+          {props.hh2}
+          {props.hh3}
         </div>
         <div className={classes.status}>
           <p>

@@ -1,23 +1,22 @@
-import React, {
-  useContext,
-} from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import { Link } from "react-router-dom";
 import AuthContext from "../Store/Api";
-import classes from './PageNo.module.css'
+import classes from "./PageNo.module.css";
 
 function PageNo(props) {
   const ctx = useContext(AuthContext);
-  const handleOnSubmit =(event)=>{
-    let pageNo = event.target.jumpToNo.value;
+  const handleOnSubmit = (event) => {
     event.preventDefault();
-    if(!pageNo){
+    let pageNo = event.target.jumpToNo.value;
+    if (!pageNo) {
       pageNo = 1;
     }
-    ctx.handlePageNo(pageNo)
+    ctx.handlePageNo(pageNo);
     event.target.jumpToNo.value = "";
-  }
+  };
   return (
     <ButtonToolbar
       className={`justify-content-center paginationBtn`}
@@ -27,8 +26,7 @@ function PageNo(props) {
         <Button
           onClick={() => {
             props.scrollUp();
-            ctx.pageNo > 1 && ctx.handlePageNo( ctx.pageNo -1)
-            // handlePagination();
+            ctx.pageNo > 1 && ctx.handlePageNo(ctx.pageNo - 1);
           }}
         >
           &#8678; Prev
@@ -38,16 +36,25 @@ function PageNo(props) {
         <Button
           onClick={() => {
             props.scrollUp();
-            ctx.pageNo < 131 && ctx.handlePageNo( ctx.pageNo +1)
-            // handlePagination();
+            ctx.pageNo < 133 && ctx.handlePageNo(ctx.pageNo + 1);
           }}
         >
           Next &#8680;
         </Button>
       </ButtonGroup>
       <form onSubmit={handleOnSubmit} className={classes.jumpTo}>
-      <input type="text" name="jumpToNo" placeholder={`${ctx.pageNo}/132`} id="pageNo" />
-      <Button disabled={ctx.loading} type="submit" size="sm" htmlFor="pageNo" >Jump&laquo;&raquo; </Button>
+        <input
+          type="number"
+          max={132}
+          min={1}
+          name="jumpToNo"
+          placeholder={`${ctx.pageNo}/132`}
+          id="pageNo"
+        />
+
+        <Button disabled={ctx.loading} type="submit" size="sm" htmlFor="pageNo">
+          Jump&laquo;&raquo;{" "}
+        </Button>
       </form>
     </ButtonToolbar>
   );

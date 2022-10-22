@@ -12,14 +12,12 @@ import CoolPage from "./ScrollToTop";
 export const Coins = () => {
   const scrollUpRef = useRef();
   const ctx = useContext(AuthContext);
-  const scrollUp = ()=>{
+  const scrollUp = () => {
     scrollUpRef.current.scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
   const [sortedCryptoData, setSortedCryptoData] = useState(ctx.cryptoData);
   const [sorted, setSorted] = useState(null);
-  // console.log("reloading");
-  console.log(ctx.loading)
 
   const sortData = (head) => {
     setSorted(false);
@@ -28,7 +26,6 @@ export const Coins = () => {
       setSorted(true);
       switch (head) {
         case "#":
-          console.log("#");
           if (sorted) {
             setSorted(false);
 
@@ -102,13 +99,18 @@ export const Coins = () => {
 
   return (
     <Fragment>
-     <div ref={scrollUpRef}></div>
+      <div ref={scrollUpRef}></div>
       {ctx.loading && <Loading />}
       <br />
-     
-      <Table className={classes.coins} striped hover variant={ctx.isDark ? 'dark' : 'light'} responsive>
-        <thead >
-        
+
+      <Table
+        className={classes.coins}
+        striped
+        hover
+        variant={ctx.isDark ? "dark" : "light"}
+        responsive
+      >
+        <thead>
           <Heading sorted={sorted} sortData={sortData} />
         </thead>
         <tbody>

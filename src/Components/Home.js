@@ -16,9 +16,9 @@ const Home = () => {
         loading={ctx.loading}
         info={
           <p style={{ marginLeft: "1rem" }}>
-            Get Details of more than 
+            Get Details of more than
             <mark style={{ backgroundColor: " #FFFF00", fontWeight: "bold" }}>
-               13k +
+              13k +
             </mark>{" "}
             coins
           </p>
