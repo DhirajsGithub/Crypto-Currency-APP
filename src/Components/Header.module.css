@@ -15,3 +15,7 @@
 .active{
     font-size: large;
 }
+.brand h1 {
+    font-size: x-large;
+    margin: 0;
+}

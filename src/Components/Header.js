@@ -47,14 +47,14 @@ function Header() {
       expand="lg"
     >
       <Container fluid>
-      <i class="fa-brands fa-wolf-pack-battalion"></i>
+      
         <Navbar.Brand className={classes.brand}>
           <NavLink
             className={(navData) => (navData.isActive ? classes.active : "")}
             style={{ color: "inherit", textDecoration: "inherit" }}
             to="/"
           >
-            DMarket
+           <h1><i className="fa-brands fa-wolf-pack-battalion"></i>  DMarket</h1> 
           </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
