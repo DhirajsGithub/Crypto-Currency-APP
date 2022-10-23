@@ -26,7 +26,7 @@ const Slogan = (props) => {
       <div
         className={classes.slogan}
         style={{
-          margin: "0 1rem",
+          margin: "0.5rem 1rem 0 1rem",
           display: "flex",
           justifyContent: "space-between",
         }}

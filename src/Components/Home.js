@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <Fragment>
       <Slogan
-        hh2={<h2>Explore</h2>}
+        hh2={<h2>Explore &nbsp; <i className="fa-brands fa-wpexplorer"></i></h2>} 
         hh3={<h3>Cryptocurrency Data by DMarket</h3>}
         loading={ctx.loading}
         info={
