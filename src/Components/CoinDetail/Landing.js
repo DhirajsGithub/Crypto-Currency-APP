@@ -54,16 +54,16 @@ const Landing = (props) => {
       <Slogan
         hh2={<h2>{name}</h2>}
         hh3={
-          <p >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-            provident.
+          <p>
+            Cryptocurrency Is Rolling 😎, The Others Are Stoned.
           </p>
         }
         info={
-          <p style={{padding: '0 10px'}}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-            soluta minima accusantium nemo reiciendis laudantium, expedita illum
-            possimus exercitationem tenetur?
+          <p style={{ padding: "0 10px" }}>
+            Investing in crypto assets is risky, but can be a good investment if
+            you do it properly and as part of a diversified portfolio.
+            Cryptocurrency is a good investment if you want to gain direct
+            exposure to the demand for digital currency.
           </p>
         }
         loading={ctx.loading}
@@ -113,7 +113,7 @@ const Landing = (props) => {
         </Row>
         <br />
         <Row>
-          <Accordion >
+          <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>About {ctx.coinId}</Accordion.Header>
               <Accordion.Body>{ctx.coinDetail?.description?.en}</Accordion.Body>

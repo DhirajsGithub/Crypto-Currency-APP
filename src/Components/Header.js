@@ -21,7 +21,6 @@ function Header() {
 
   const handleOnChange = (event) => {
     setSearch(event.target.value);
-    // searchCoinss();
   };
   useEffect(() => {
     const time = setTimeout(()=>{
@@ -41,12 +40,6 @@ function Header() {
 
   }, [search]);
 
-  // const searchCoinss = () => {
-  //   let newCoinList = coinList.filter((item) => {
-  //     return item.name.toLowerCase().startsWith(search.toLowerCase());
-  //   });
-  //   setCoinList(newCoinList);
-  // };
   const handleThemeOnChange = () => {
     setDark((prev) => !prev);
     ctx.handleTheme(isdark);
