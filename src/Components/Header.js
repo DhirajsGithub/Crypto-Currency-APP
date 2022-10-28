@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -14,26 +14,39 @@ import { Link, NavLink } from "react-router-dom";
 function Header() {
   const ctx = useContext(AuthContext);
   const [search, setSearch] = useState("");
+  const inputRef = useRef();
   const [coinList, setCoinList] = useState([]);
 
   const [isdark, setDark] = useState(true);
 
   const handleOnChange = (event) => {
     setSearch(event.target.value);
-    searchCoinss();
+    // searchCoinss();
   };
   useEffect(() => {
-    fetchCoinsList().then((data) => {
-      setCoinList(data);
+    const time = setTimeout(()=>{
+      if(search == inputRef.current.value){
+        fetchCoinsList().then((data) => {
+          let newCoinList = data.filter((item) => {
+            return item.name.toLowerCase().startsWith(search.toLowerCase());
+          });
+        setCoinList(newCoinList);
     });
-  }, []);
+      }
+    }, 100);
 
-  const searchCoinss = () => {
-    let newCoinList = coinList.filter((item) => {
-      return item.name.toLowerCase().startsWith(search.toLowerCase());
-    });
-    setCoinList(newCoinList);
-  };
+    return ()=>{
+      clearTimeout(time)
+    }
+
+  }, [search]);
+
+  // const searchCoinss = () => {
+  //   let newCoinList = coinList.filter((item) => {
+  //     return item.name.toLowerCase().startsWith(search.toLowerCase());
+  //   });
+  //   setCoinList(newCoinList);
+  // };
   const handleThemeOnChange = () => {
     setDark((prev) => !prev);
     ctx.handleTheme(isdark);
@@ -97,6 +110,7 @@ function Header() {
                 className="me-2"
                 aria-label="Search"
                 value={search}
+                ref={inputRef}
               />
             </Form>
             menuVariant={ctx.isDark ? "dark" : "light"}

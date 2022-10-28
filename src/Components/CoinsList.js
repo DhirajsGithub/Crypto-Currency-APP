@@ -1,4 +1,5 @@
 const fetchCoinsList = async () => {
+  console.log("fetching coin list")
   const response = await fetch("https://api.coingecko.com/api/v3/coins/list");
   if (!response.ok) {
     throw new Error("Response is not OK");
